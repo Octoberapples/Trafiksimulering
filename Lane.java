@@ -65,10 +65,20 @@ public class Lane {
 	// (om det går).
     
     public String toString() {
-        return "Arrayen är " + theLane.length + " lång.";
+        String s = "";
+        for(int i = 0; i < theLane.length; i++) {
+            if (theLane[i] == null){
+                s = s + "Plats " + i + " innehåller ingen bil.\n";
+            }
+            else{
+                s = s + "Plats " + i + " innehåller en bil.\n";
+            }
+            
+        }
+        return s;
     }
-    
-    public static void main (String [] args) {
+        
+        public static void main (String [] args) {
         Lane a_lane = new Lane(5);
         Car a_car = new Car(1,2);
         a_lane.putLast(a_car);
