@@ -1,19 +1,20 @@
+package simulation;
 public class TrafficSystem {
-    // Definierar de vägar och signaler som ingår i det 
+    // Definierar de vÃ¤gar och signaler som ingÃ¥r i det 
     // system som skall studeras.
     // Samlar statistik
     
-    // Attribut som beskriver beståndsdelarna i systemet
+    // Attribut som beskriver bestÃ¥ndsdelarna i systemet
     private Lane  r0;
     private Lane  r1;
     private Lane  r2;
     private Light s1;
     private Light s2;
 
-    // Diverse attribut för simuleringsparametrar (ankomstintensiteter,
+    // Diverse attribut fÃ¶r simuleringsparametrar (ankomstintensiteter,
     // destinationer...)
 
-    // Diverse attribut för statistiksamling
+    // Diverse attribut fÃ¶r statistiksamling
     //....    
     
     private int time = 0;
@@ -23,26 +24,26 @@ public class TrafficSystem {
     	}
 
     public void readParameters() {
-	// Läser in parametrar för simuleringen
-	// Metoden kan läsa från terminalfönster, dialogrutor
-	// eller från en parameterfil. Det sista alternativet
-	// är att föredra vid uttestning av programmet eftersom
-	// man inte då behöver mata in värdena vid varje körning.
-        // Standardklassen Properties är användbar för detta. 
+	// LÃ¤ser in parametrar fÃ¶r simuleringen
+	// Metoden kan lÃ¤sa frÃ¥n terminalfÃ¶nster, dialogrutor
+	// eller frÃ¥n en parameterfil. Det sista alternativet
+	// Ã¤r att fÃ¶redra vid uttestning av programmet eftersom
+	// man inte dÃ¥ behÃ¶ver mata in vÃ¤rdena vid varje kÃ¶rning.
+        // Standardklassen Properties Ã¤r anvÃ¤ndbar fÃ¶r detta. 
     }
 
     public void step() {
 	// Stega systemet ett tidssteg m h a komponenternas step-metoder
-	// Skapa bilar, lägg in och ta ur på de olika Lane-kompenenterna
+	// Skapa bilar, lÃ¤gg in och ta ur pÃ¥ de olika Lane-kompenenterna
     }
 
     public void printStatistics() {
-	// Skriv statistiken samlad så här långt
+	// Skriv statistiken samlad sÃ¥ hÃ¤r lÃ¥ngt
     }
 
     public void print() {
-	// Skriv ut en grafisk representation av kösituationen
-	// med hjälp av klassernas toString-metoder
+	// Skriv ut en grafisk representation av kÃ¶situationen
+	// med hjÃ¤lp av klassernas toString-metoder
     }
 
 }

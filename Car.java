@@ -1,24 +1,23 @@
-
-
+package simulation;
 public class Car {
-
+    
     private int bornTime;
     private CarPosition destination; 
 
     private CarPosition currentPosition;
     
     public Car() {
-        bornTime = 1;
+        bornTime = 0;
     }
     
-    public Car(int _bornTime) {
-        bornTime = _bornTime;
+    public Car(int bT, CarPosition dest) {
+        bornTime = bT;
+        destination = dest;
     }
 
-
-
     public void step()
-    {
+    {   
+        
     	// Uppdatera bilen ett tidssteg
     }
 
@@ -33,10 +32,9 @@ public class Car {
     }
     
     public static void main (String [] args){
-        Car a = new Car();
-        System.out.println(a.toString());
+        Car a_car = new Car();
+        System.out.println(a_car.toString());
     }
     
 
 }
-

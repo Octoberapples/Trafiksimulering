@@ -1,19 +1,24 @@
+package simulation;
 
-
-// HÂller i en bil och k‰nner till sina "grannar". 
-public class CarPosition{
+// H√•ller i en bil och k√§nner till sina "grannar". 
+public class CarPosition {
+    	
+    private Car currentCar = null; // null om ingen bil finns p√• positionen
 	
-    private Car currentCar = null; // null om ingen bil finns pÂ positionen
+    private Lane owner;
 	
-    //private Lane owner;
-	
-    private CarPosition forward;
+    protected CarPosition forward;
     private CarPosition turn;
 
-    /*	
-    public CarPosition(Lane a_Owner)
+    public CarPosition(CarPosition _forward, CarPosition _turn) 
     {
-        owner = a_Owner;
+        forward = _forward;
+        turn = _turn;
+    }
+       	
+    public CarPosition(Lane an_Owner)
+    {
+        owner = an_Owner;
     }
     
     
@@ -22,7 +27,7 @@ public class CarPosition{
         return owner.matchEnd(target);
     }
 
-    */
+    
 	
     public boolean moveForward()
     {
