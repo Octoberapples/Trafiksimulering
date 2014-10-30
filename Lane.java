@@ -7,18 +7,18 @@ public class Lane {
         // in en ny bil på vägen
     }
 
-    protected CarPosition[] theLane;
+    protected CarPosition[] theLane; //FIELD
 
-    public Lane(int n) {
+    public Lane(int n) {  //KONSTRUKTOR :v
         theLane = new CarPosition[n];
         for (int i = 0; i < n; i++) {
-            theLane[i+1] = theLane[i].forward;
+            theLane[i] = theLane[i+1].forward;
         }
 	// Konstruerar ett Lane-objekt med plats för n fordon
-    // Samt länker ihop varje CarPosition med forward för den framför
+        // Samt länker ihop varje CarPosition med forward för den framför
     }
     
-    public boolean matchEnd(CarPosition target)
+    public boolean matchEnd(CarPosition target) //METOD
     {
     	if(theLane[0] == target)
     		return true;

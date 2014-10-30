@@ -10,17 +10,13 @@ public class CarPosition {
     protected CarPosition forward;
     private CarPosition turn;
 
-    public CarPosition(CarPosition _forward, CarPosition _turn) 
+    public CarPosition(Lane _owner) 
     {
-        forward = _forward;
-        turn = _turn;
-    }
-       	
-    public CarPosition(Lane an_Owner)
-    {
-        owner = an_Owner;
+        owner = _owner;
     }
     
+    
+
     
     public boolean isEnd(CarPosition target)
     {
@@ -51,10 +47,14 @@ public class CarPosition {
     
     /* public String toString() {
         return "CarPosition(currentCar) = " + + ",
-                CarPosition(owner) = " + + ",
-                CarPosition(forward) = " + + ",
-                CarPosition(turn) = " + ;
+                CarPosition(owner) = " + + ";
+
     }
     */
     
+
+    public static void main (String [] args) {
+        CarPosition ourSpace = new CarPosition(10);
+        
+    }
 }
