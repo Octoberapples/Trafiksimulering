@@ -1,79 +1,79 @@
-package simulation;
-    
+
+
 public class Lane {
 
     public static class OverflowException extends RuntimeException {
-        // Undantag som kastas n√§r det inte gick att l√§gga 
-        // in en ny bil p√• v√§gen
+        // Undantag som kastas n‰r det inte gick att l‰gga 
+        // in en ny bil pÂ v‰gen
     }
 
-    protected CarPosition[] theLane; //FIELD
+    //field
+    private Car[] theLane;
 
-    public Lane(int n) {  //KONSTRUKTOR :v
-        theLane = new CarPosition[n];
-        for (int i = 0; i < n; i++) {
-            theLane[i] = theLane[i+1].forward;
-        }
-	// Konstruerar ett Lane-objekt med plats f√∂r n fordon
-        // Samt l√§nker ihop varje CarPosition med forward f√∂r den framf√∂r
-    }
-    
-    public boolean matchEnd(CarPosition target) //METOD
-    {
-    	if(theLane[0] == target)
-    		return true;
-    	else
-    		return false;
-    }
-    
-    public int getLength(){
-    	return theLane.length;
-    }
-    
-    public void setParallel(Lane sideLane)
-    {
-    	int i = 0;
-    	
-    	while(i < sideLane.getLength() && i < theLane.length)
-    	{
-    		theLane[i].setTurn(sideLane.theLane[i]);
-    		i++;
-    	}
+
+    //konstruktor
+    public Lane(int n) {
+        theLane = new Car[n];
+        
+	// Konstruerar ett Lane-objekt med plats fˆr n fordon
     }
 
+    //metoder
     public void step() {
-	// Stega fram alla fordon (utom det p√• plats 0) ett steg 
-        // (om det g√•r). (Fordonet p√• plats 0 tas bort utifr√•n 
-	// mm h a metoden nedan.)
+        for(int i = 1; i <= theLane.length; i++) {
+            if(theLane[i-1] == null){
+               theLane[i-1] = theLane[i];
+               theLane[i] = null;
+            }
+        }
     }
+                                                                                                                                                                                                                                                                 
+    // Stega fram alla fordon (utom det pÂ plats 0) ett steg 
+    // (om det gÂr). (Fordonet pÂ plats 0 tas bort utifrÂn 
+    // mm h a metoden nedan.)
+    
 
     public Car getFirst() {
-    	return null;
-	// Returnera och tag bort bilen som st√•r f√∂rst
+        Car first_car = theLane[0];
+        theLane[0] = null;
+        return first_car;
+	// Returnera och tag bort bilen som stÂr fˆrst
     }
 
     public Car firstCar() {
-    	return null;
-	// Returnera bilen som st√•r f√∂rst utan att ta bort den
+        return theLane[0];
+	// Returnera bilen som stÂr fˆrst utan att ta bort den
     }
 
 
     public boolean lastFree() {
-    	return false;
-	// Returnera true om sista platsen ledig, annars false
+        int len = (theLane.length-1); 
+        if (theLane[len] == null) return true;
+        else return false;
     }
+	// Returnera true om sista platsen ledig, annars false
+    
 
     public void putLast(Car c) throws OverflowException {
-	// St√§ll en bil p√• sista platsen p√• v√§gen
-	// (om det g√•r).
+        int len = ((theLane.length)-1);
+        if (lastFree()) {
+            theLane[len] = c;
+        }
     }
-
+    
+	// St‰ll en bil pÂ sista platsen pÂ v‰gen
+	// (om det gÂr).
+    
     public String toString() {
-    	return "";
-    	//...
-    	}
-
+        return "Arrayen ‰r " + theLane.length + " lÂng.";
+    }
+    
+    public static void main (String [] args) {
+        Lane a_lane = new Lane(5);
+        Car a_car = new Car(1,2);
+        a_lane.putLast(a_car);
+        System.out.println(a_lane.toString());
+            
+    }
 }
-
-
 

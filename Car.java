@@ -1,40 +1,31 @@
-package simulation;
+
+
 public class Car {
-    
+
     private int bornTime;
-    private CarPosition destination; 
+    private int dest; // 1 för rakt fram, 2 för vänstersväng
 
-    private CarPosition currentPosition;
-    
-    public Car() {
-        bornTime = 0;
+    // konstruktor och get-metoder
+    public Car(int _bornTime, int _dest) {
+        bornTime = _bornTime;
+        dest = _dest;
+    }
+
+    public int getTime () {
+        return bornTime;
+    }
+
+    public int getDest () {
+        return dest;
     }
     
-    public Car(int bT, CarPosition dest) {
-        bornTime = bT;
-        destination = dest;
-    }
-
-    public void step()
-    {   
-        
-    	// Uppdatera bilen ett tidssteg
-    }
-
-
-    // konstruktor och get- oct set-metoder
-    //...
-
     public String toString() {
-        return "Car(bornTime) = " + this.bornTime + "\n" +
-               "Car(destination) = " + this.destination + "\n" +
-               "Car(currentPosition) = " + this.currentPosition;
+        return "Car(bornTime) = "+ bornTime + "\n" +
+               "Car(dest) = " + dest;      
     }
-    
-    public static void main (String [] args){
-        Car a_car = new Car();
-        System.out.println(a_car.toString());
-    }
-    
 
+    public static void main (String [] args) {
+        Car a_car = new Car(1, 2);
+        System.out.println(a_car.toString());
+    } 
 }

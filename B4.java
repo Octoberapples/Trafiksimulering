@@ -5,20 +5,20 @@ public class Egendom {
     public int location;
 
     //constructor
-    public Egendom(int area, int location) {
+    public Egendom(int _area, int _location) {
 	area = _area;
-	location = _ location;
+	location = _location;
     }
     
     //methods
-    public int skatt() {
-
-	|
-	|
-	v
-  
+    
+    public int mkProperty(int area, int location) {
+        Egendom a_property = new Egendom(area, location);
     }
 
+    public int skatt() {
+        return (a_property.area + a_property.location); 
+    }
 }
 
 
@@ -28,12 +28,23 @@ public class Hus extends Egendom {
     public int furniture;
 
     //constructor
-    public Hus(int furniture) {
-	furniture =_furniture;
+    public Hus(int _furniture) {
+        furniture =_furniture;
+        
     }
 
+   
     //method
+
     
+    public int skatt(int n) {
+        Hus a_house = new Hus(n);
+        return (super.skatt() - furniture);
+    }  
+        
+    public static void main () {
+        System.out.println("Husets skatt är: " + )
+    }
 
 }
 
