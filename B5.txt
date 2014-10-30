@@ -1,0 +1,12 @@
+Använda både överlagrade och specialiserade konstruktorer på lämpligt sätt i programmering 
+
+
+ÖVERLAGRING
+
+*  I Java kan man ge flera metoder samma namn, bara dom har olika parameterlistor. Detta kallas överlagring. När man anropar en överlagrad metod tittar Java på dom verkliga parametrarnas typer och avgör vilken av alla metoder med samma namn som ska exekveras. Ett bra exempel är anropet System.out.print(x) som väljer en av nio överlagrade metoder beroende på vilken typ x har. 
+
+* Överlagring(overloading) blir det om det finns två metoder i
+samma klass som har samma namn, men med olika
+signaturer d.v.s. det är antal parametrar som skiljer dem åt.
+
+* http://www.programmera.net/java/class.php
