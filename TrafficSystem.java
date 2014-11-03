@@ -54,7 +54,14 @@ public class TrafficSystem {
 
     }
 
+public static int randInt(int min, int max) {
 
+
+    Random rand = new Random();
+    int randomNum = rand.nextInt((max - min) + 1) + min;
+
+    return randomNum;
+}
 
 
 	// Läser in parametrar för simuleringen
@@ -85,11 +92,11 @@ public class TrafficSystem {
                 r2.putLast(c);
             }
         }
-        if (Math.random() <= (arrivalIntensity/100) && r0.lastFree() == true) {
-            Car new_car = new Car(time, (int)Math.random());
+        r0.step();
+        if (Math.random() <= ((float)arrivalIntensity/100f) && r0.lastFree() == true) {
+            Car new_car = new Car(time, ((Math.random()>=0.5)?1:0));
             r0.putLast(new_car);
         }
-        r0.step();
         time++;
 	// Stega systemet ett tidssteg m h a komponenternas step-metoder
 	// Skapa bilar, lägg in och ta ur på de olika Lane-kompenenterna

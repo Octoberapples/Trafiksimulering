@@ -1,4 +1,6 @@
-
+/**
+ *@author Linnea Dahl & Axel Boström
+ */
 
 public class Lane {
 
@@ -20,19 +22,21 @@ public class Lane {
 
     //metoder
     public void step() {
-        for(int i = 0; i < (theLane.length-1); i++) {
+        for(int i = 0; i <= (theLane.length-2); i++) {
             if (theLane[i] == null){
                theLane[i] = theLane[i+1];
                theLane[i+1] = null;
             }
         }
     }
-                                                                                                                                                                                                                                                                 
+    
     // Stega fram alla fordon (utom det på plats 0) ett steg 
     // (om det går). (Fordonet på plats 0 tas bort utifrån 
     // mm h a metoden nedan.)
     
-
+    /**
+     * @return first_car
+     */
     public Car getFirst() {
         Car first_car = theLane[0];
         theLane[0] = null;
