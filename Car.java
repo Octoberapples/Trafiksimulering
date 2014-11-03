@@ -19,13 +19,4 @@ public class Car {
         return dest;
     }
     
-    public String toString() {
-        return "Car(bornTime) = "+ bornTime + "\n" +
-               "Car(dest) = " + dest;      
-    }
-
-    public static void main (String [] args) {
-        Car a_car = new Car(1, 2);
-        System.out.println(a_car.toString());
-    } 
 }

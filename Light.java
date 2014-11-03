@@ -36,13 +36,9 @@ public class Light {
         // Returnerar true om time<green, annars false
     }
 
-    public String toString() {
-        return "Light(period) = "+ period + "\n" +
-               "Light(time) = " + time + "\n" +
-               "Light(green) = " + green;      
+    public String toString() 
+    {
+        if (time<green) return "G";
+        else return "R";
     }
-    public static void main (String [] args) {
-        Light a_light = new Light(1, 2);
-        System.out.println(a_light.toString());
-    } 	
 }

@@ -20,10 +20,10 @@ public class Lane {
 
     //metoder
     public void step() {
-        for(int i = 1; i <= theLane.length; i++) {
-            if(theLane[i-1] == null){
-               theLane[i-1] = theLane[i];
-               theLane[i] = null;
+        for(int i = 0; i < (theLane.length-1); i++) {
+            if (theLane[i] == null){
+               theLane[i] = theLane[i+1];
+               theLane[i+1] = null;
             }
         }
     }
@@ -65,25 +65,18 @@ public class Lane {
 	// (om det går).
     
     public String toString() {
-        String s = "";
-        for(int i = 0; i < theLane.length; i++) {
-            if (theLane[i] == null){
-                s = s + "Plats " + i + " innehåller ingen bil.\n";
+        String lane = "";
+        for (int i = 0; i < theLane.length; i++){
+            if (theLane[i] == null) {
+                lane += "---";
+            }else{
+                lane += "[X]";
             }
-            else{
-                s = s + "Plats " + i + " innehåller en bil.\n";
-            }
-            
         }
-        return s;
+        return lane;
     }
-        
-        public static void main (String [] args) {
-        Lane a_lane = new Lane(5);
-        Car a_car = new Car(1,2);
-        a_lane.putLast(a_car);
-        System.out.println(a_lane.toString());
-            
-    }
+
 }
+
+
 
