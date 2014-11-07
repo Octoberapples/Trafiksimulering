@@ -1,23 +1,16 @@
-/**
- *@author Linnea Dahl & Axel Boström
- */
+package trafiksimulering;
 
 public class Lane {
 
-    public static class OverflowException extends RuntimeException {
-        // Undantag som kastas när det inte gick att lägga 
-        // in en ny bil på vägen
-    }
-
     //field
-    private Car[] theLane;
+    private final Car[] theLane;
 
 
     //konstruktor
     public Lane(int n) {
         theLane = new Car[n];
         
-	// Konstruerar ett Lane-objekt med plats för n fordon
+	// Konstruerar ett Lane-objekt med plats fï¿½r n fordon
     }
 
     //metoder
@@ -30,8 +23,8 @@ public class Lane {
         }
     }
     
-    // Stega fram alla fordon (utom det på plats 0) ett steg 
-    // (om det går). (Fordonet på plats 0 tas bort utifrån 
+    // Stega fram alla fordon (utom det pï¿½ plats 0) ett steg 
+    // (om det gï¿½r). (Fordonet pï¿½ plats 0 tas bort utifrï¿½n 
     // mm h a metoden nedan.)
     
     /**
@@ -41,46 +34,42 @@ public class Lane {
         Car first_car = theLane[0];
         theLane[0] = null;
         return first_car;
-	// Returnera och tag bort bilen som står först
+	// Returnera och tag bort bilen som står först 
     }
-
+    
     public Car firstCar() {
         return theLane[0];
-	// Returnera bilen som står först utan att ta bort den
+	// Returnera bilen som stï¿½r fï¿½rst utan att ta bort den
     }
 
 
     public boolean lastFree() {
         int len = (theLane.length-1); 
-        if (theLane[len] == null) return true;
-        else return false;
+        return theLane[len] == null;
     }
 	// Returnera true om sista platsen ledig, annars false
     
 
-    public void putLast(Car c) throws OverflowException {
+    public void putLast(Car c){
         int len = ((theLane.length)-1);
         if (lastFree()) {
             theLane[len] = c;
-        }
+        }   
     }
     
-	// Ställ en bil på sista platsen på vägen
-	// (om det går).
+	// Stï¿½ll en bil pï¿½ sista platsen pï¿½ vï¿½gen
+	// (om det gï¿½r).
     
     public String toString() {
         String lane = "";
-        for (int i = 0; i < theLane.length; i++){
-            if (theLane[i] == null) {
-                lane += "---";
-            }else{
-                lane += "[X]";
+        for (Car carPosition : theLane) {
+            if (carPosition == null) {
+                lane += "-";
+            } else {
+                lane += "o";
             }
         }
         return lane;
     }
 
 }
-
-
-

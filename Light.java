@@ -1,44 +1,30 @@
+package trafiksimulering;
 
 public class Light {
-    private int period;
+    private final int period;
     private int time;  // Intern klocka: 0, 1, ... period-1, 0, 1 ...
-    private int green; // Signalen grön när time<green 
+    private final int green; // Signalen grï¿½n nï¿½r time<green 
     
-    public Light(int _period, int _green) {
-        period = _period;
+    public Light(int period, int green) {
+        this.period = period - 1;
         time = 0;
-        green = _green;
+        this.green = green - 1;
     }
 
-
-    public int getPeriod () {
-        return period;
-    }
-
-    public int getGreen () {
-        return green;
-    }
-
-    public int getTime () {
-        return time;
-    }
-
-    public void step() { 
+ public void step() { 
         if(time<period) time++;
         else time = 0;
         // Stegar fram klocka ett steg
     }
 
     public boolean isGreen()   {
-	if (time<green) return true;
-        else return false;
-
+        return time<=green;
         // Returnerar true om time<green, annars false
     }
 
     public String toString() 
     {
-        if (time<green) return "G";
+        if (isGreen() == true) return "G";
         else return "R";
     }
 }

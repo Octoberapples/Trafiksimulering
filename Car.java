@@ -1,9 +1,9 @@
-
+package trafiksimulering;
 
 public class Car {
 
-    private int bornTime;
-    private int dest; // 0 för rakt fram, 1 för vänstersväng
+    private final int bornTime;
+    private final int dest; // 0 fï¿½r rakt fram, 1 fï¿½r vï¿½nstersvï¿½ng
 
     // konstruktor och get-metoder
     public Car(int bornTime, int dest) {
