@@ -50,6 +50,7 @@ public class TrafficSystem {
 
     private int time;
 
+    
 
     public TrafficSystem() {
         Scanner sc = new Scanner(System.in);
@@ -63,14 +64,16 @@ public class TrafficSystem {
         int m = sc.nextInt();
         System.out.println("How long is the period: ");
         int p = sc.nextInt();
-        System.out.println("How long is the greentime: ");
-        int g = sc.nextInt();
+        System.out.println("How long is the straight greentime: ");
+        int g1 = sc.nextInt();
+        System.out.println("How long is the turn greentime: ");
+        int g2 = sc.nextInt();
         sc.close();
         r0 = new Lane(n);
         r1 = new Lane(m);
         r2 = new Lane(m);
-        s1 = new Light(p, g);
-        s2 = new Light(p, g);   
+        s1 = new Light(p, g1);
+        s2 = new Light(p, g2);   
 
     }
 
@@ -98,9 +101,9 @@ public class TrafficSystem {
         }
     }
 
-    public void setWaitTimes (Lane l) {
-        setShortestTime(l);
-        setLongestTime(l);
+    public void setWaitTimes (Lane ln) {
+        setShortestTime(ln);
+        setLongestTime(ln);
     }
     
     public void setAverageTime() {
@@ -108,7 +111,7 @@ public class TrafficSystem {
     } 
     
     public void setFrequency() {
-        carFrequency = numberOfPassedCars/time;
+        carFrequency = (float)numberOfPassedCars/(float)time;
     }
     
     public void printStatistics() {
@@ -118,18 +121,21 @@ public class TrafficSystem {
         System.out.println("The shortest wait time was " + shortestWaitTime + " seconds long.");
         System.out.println("The longest wait time was " + longestWaitTime + " seconds long.");
         System.out.println("The average wait time was " + averageWaitTime + " seconds long.");
-        System.out.println("Estimated frequency of cars departing from the system was " + carFrequency + " cars/second.");
+        System.out.println("Estimated frequency of cars leaving the system was " + carFrequency + " cars/second.");
 	// Skriv statistiken samlad s� h�r l�ngt
     }
     
     public void step() throws OverflowException {
-
-        if (s1.isGreen()) {                         //if s1 is green then s2 is aswell
+        s1.step();
+        s2.step();
+        if (s1.isGreen()) {                         
             if (r1.firstCar() != null){
                 setWaitTimes(r1);
                 this.numberOfPassedCars += 1;
                 totalWaitTime += getLifeTime(r1.firstCar());
             }
+        }
+        if (s2.isGreen()) {
             r1.getFirst();
             if (r2.firstCar() != null){
                 setWaitTimes(r2);
@@ -156,8 +162,7 @@ public class TrafficSystem {
         }else if (r0.lastFree() == false) {
             throw new OverflowException("No new cars could be added to the system.");
         }
-        s1.step();
-        s2.step();
+
         time++;
 	// Stega systemet ett tidssteg m h a komponenternas step-metoder
 	// Skapa bilar, l�gg in och ta ur p� de olika Lane-kompenenterna

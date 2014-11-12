@@ -9,11 +9,11 @@ public class Simulation {
         for(int i = 0; i < 50; i++){
             try{
             newTS.step();   
+            newTS.print();
             } catch (OverflowException e) {
-            	System.out.println("Unable to add more cars to the system.");
+            	System.out.println("Unable to add more cars to the system.\n");
                 break;
             } finally {
-            newTS.print();
             Thread.sleep(500); 
             }
 	// Skapar ett TrafficSystem
