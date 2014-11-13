@@ -1,88 +1,186 @@
 package trafiksimulering;
 
 import java.util.Scanner;
+import java.util.InputMismatchException;
 
 public class TrafficSystem {
     
     public static class OverflowException extends RuntimeException {
 
-        /**
-		 * 
-		 */
-		private static final long serialVersionUID = 1L; //wat
+
 		public OverflowException() {
         super();
         }
         public OverflowException(String msg) {
         super(msg);
         }
-        
-        // Undantag som kastas n�r det inte gick att l�gga 
-        // in en ny bil p� v�gen
+
     }
   
-    // Definierar de v�gar och signaler som ing�r i det 
-    // system som skall studeras.
-    // Samlar statistik
-    
-    // Attribut som beskriver best�ndsdelarna i systemet
-    private final Lane  r0;
-    private final Lane  r1;
-    private final Lane  r2;
-    private final Light s1;
-    private final Light s2;
+
+    private Lane  r0, r1, r2;
+    private Light s1, s2;
 
 
-    // Diverse attribut f�r simuleringsparametrar (ankomstintensiteter,
-    // destinationer...)
+    private int numberOfPassedCars, shortestWaitTime, longestWaitTime, totalWaitTime, time, arrivalIntensity; 
+    private float averageWaitTime, carFrequency;
 
-    //private int runTime;
-
-    private final int arrivalIntensity;
-   
-    // Diverse attribut f�r statistiksamling
-    private int numberOfPassedCars; //antalet bilar som tagit sig igenom
-    private int shortestWaitTime;   //kortaste v�ntetid...
-    private int longestWaitTime;    //inte l�ngsta v�ntetid iaf
-    private int totalWaitTime;
-    private float averageWaitTime;
-    private float carFrequency;
-
-    private int time;
 
     
-
     public TrafficSystem() {
-        Scanner sc = new Scanner(System.in);
-        //System.out.println("How long should the simulation last: ");
-        //runTime = sc.nextInt();
-        System.out.println("Decide the arrival intensity, choose a number between 1 and 100:  ");
-        arrivalIntensity = sc.nextInt();
-        System.out.println("How long is r0 going to be: ");
-        int n = sc.nextInt();
-        System.out.println("How long is r1 and r2 going to be: ");
-        int m = sc.nextInt();
-        System.out.println("How long is the period: ");
-        int p = sc.nextInt();
-        System.out.println("How long is the straight greentime: ");
-        int g1 = sc.nextInt();
-        System.out.println("How long is the turn greentime: ");
-        int g2 = sc.nextInt();
-        sc.close();
-        r0 = new Lane(n);
-        r1 = new Lane(m);
-        r2 = new Lane(m);
-        s1 = new Light(p, g1);
-        s2 = new Light(p, g2);   
+    	setParameters();
+    }
+    
+    public int inputLoop(int i, String s, Scanner sc) {
+    	String posValue = "\nPlease enter a positive integer.\n";
+   		while(i < 0){
 
+   			System.out.println(s);   
+   			try{
+   			i = sc.nextInt();
+   			
+   			} catch (InputMismatchException e){
+ 			   System.out.println(posValue);
+ 			   sc.next();
+ 	   		}
+		}
+   		return i;
     }
 
-	// L�ser in parametrar f�r simuleringen
-	// Metoden kan l�sa fr�n terminalf�nster, dialogrutor
-	// eller fr�n en parameterfil. Det sista alternativet
-	// �r att f�redra vid uttestning av programmet eftersom
-	// man inte d� beh�ver mata in v�rdena vid varje k�rning.
-        // Standardklassen Properties �r anv�ndbar f�r detta.     
+    
+   	public void setParameters() {
+   		Scanner sc = new Scanner(System.in);
+   		int n = -1, m = -1, t = -1, p = -1, g1 = -1, g2 = -1;
+   		String aI = "Percentual chance of cars arriving to the system (positive integer):  ";
+   		String lane1 = "How long is the first lane (positive integer): ";
+   		String lane2 = "How long are the double lanes (positive integer):  ";
+   		String per = "How long is the period (positive integer):  ";
+   		String green1 = "How long is the straight greentime (positive integer):  ";
+   		String green2 = "How long is the turn greentime (positive integer):  ";
+   		
+   		
+   		arrivalIntensity = inputLoop(n, aI, sc);  ;
+
+   		r0 = new Lane(inputLoop(m, lane1, sc));
+   		t = inputLoop(t, lane2, sc);
+   		r1 = new Lane(t);
+   		r2 = new Lane(t);
+   		p = inputLoop(p, per, sc);	
+   		g1 = inputLoop(g1, green1, sc);
+   		g2 = inputLoop(g2, green2, sc);
+   		
+   		if(p<g1) {
+   			System.out.println("Please enter values where period > straight greentime:\nEnter a length of period: ");
+   			p = sc.nextInt();
+   			System.out.println("Enter the length of the straight greentime: ");
+   			g1 = sc.nextInt();
+           		
+   		}
+   		if (p<g2) {
+   			System.out.println("Please enter values where period > turn greentime.\nEnter a value for period: ");
+   			p = sc.nextInt();
+   			System.out.println("Enter the length of the turn greentime: ");
+   			g2 = sc.nextInt();
+   		} 
+   		s1 = new Light(p, g1);
+   		s2 = new Light(p, g2);
+   		sc.close(); 	
+   		
+   		/*
+   		while(n < 0){
+
+	   			System.out.println("Percentual chance of cars arriving to the system (positive integer):  ");   
+	   			try{
+	   			n = sc.nextInt();
+	   			
+	   			} catch (InputMismatchException e){
+	 			   System.out.println(posValue);
+	 			   sc.next();
+	 	   		}
+   		} arrivalIntensity = n;
+   	
+   		while(m < 0){
+
+   			System.out.println("How long is the first lane (positive integer): ");   
+   			try{
+   			m = sc.nextInt();
+   			
+   			} catch (InputMismatchException e){
+ 			   System.out.println(posValue);
+ 			   sc.next();
+ 	   		}
+		}r0 = new Lane(m);
+   		
+		
+   		while(t < 0){
+
+   			System.out.println("How long are the double lanes (positive integer):  ");   
+   			try{
+   			t = sc.nextInt();
+   			
+   			} catch (InputMismatchException e){
+ 			   System.out.println(posValue);
+ 			   sc.next();
+ 	   		}
+		}  
+   		r1 = new Lane(t);
+   		r2 = new Lane(t);
+	   
+   		while(p< 0){
+
+   			System.out.println("How long is the period (positive integer):  ");   
+   			try{
+   			p = sc.nextInt();
+   			
+   			} catch (InputMismatchException e){
+ 			   System.out.println(posValue);
+ 			   sc.next();
+ 	   		}
+		}  	
+   		
+   		while(g1< 0){
+
+   			System.out.println("How long is the straight greentime (positive integer):  ");   
+   			try{
+   			g1 = sc.nextInt();
+   			
+   			} catch (InputMismatchException e){
+ 			   System.out.println(posValue);
+ 			   sc.next();
+ 	   		}
+		}  
+   		
+   		while(g2 < 0){
+
+   			System.out.println("How is the turn greentime (positive integer):  ");   
+   			try{
+   			g2= sc.nextInt();
+   			
+   			} catch (InputMismatchException e){
+ 			   System.out.println(posValue);
+ 			   sc.next();
+ 	   		}
+		}  
+   		
+   		if(p<g1) {
+   			System.out.println("Please enter values where period > straight greentime:\nEnter a length of period: ");
+   			p = sc.nextInt();
+   			System.out.println("Enter the length of the straight greentime: ");
+   			g1 = sc.nextInt();
+           		
+   		}
+   		if (p<g2) {
+   			System.out.println("Please enter values where period > turn greentime.\nEnter a value for period: ");
+   			p = sc.nextInt();
+   			System.out.println("Enter the length of the turn greentime: ");
+   			g2 = sc.nextInt();
+   		} 
+   		s1 = new Light(p, g1);
+   		s2 = new Light(p, g2);
+   		sc.close(); 	
+*/
+   	}
+
 
     public int getLifeTime (Car c) {
         return (this.time - c.getTime());
@@ -122,7 +220,7 @@ public class TrafficSystem {
         System.out.println("The longest wait time was " + longestWaitTime + " seconds long.");
         System.out.println("The average wait time was " + averageWaitTime + " seconds long.");
         System.out.println("Estimated frequency of cars leaving the system was " + carFrequency + " cars/second.");
-	// Skriv statistiken samlad s� h�r l�ngt
+	
     }
     
     public void step() throws OverflowException {
@@ -160,12 +258,11 @@ public class TrafficSystem {
             Car new_car = new Car(time, ((Math.random()>=0.5)?1:0));
             r0.putLast(new_car);
         }else if (r0.lastFree() == false) {
-            throw new OverflowException("No new cars could be added to the system.");
+            throw new OverflowException();
         }
 
         time++;
-	// Stega systemet ett tidssteg m h a komponenternas step-metoder
-	// Skapa bilar, l�gg in och ta ur p� de olika Lane-kompenenterna
+
     }
     
 
@@ -177,8 +274,6 @@ public class TrafficSystem {
         System.out.println(r2.toString());
         System.out.println(s2.toString()); 
 
-	// Skriv ut en grafisk representation av k�situationen
-	// med hj�lp av klassernas toString-metoder
     }
     
 
