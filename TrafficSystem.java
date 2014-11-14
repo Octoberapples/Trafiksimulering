@@ -1,7 +1,14 @@
-package trafiksimulering;
 
-import java.util.Scanner;
+package simulering;
 import java.util.InputMismatchException;
+import java.util.Scanner;
+/**
+ * 
+ * The class {@code TrafficSystem} gets the parameters for the traffic simulation, controls the steps and prints the statistics.
+ * 
+ * @author Linnea Dahl and Axel Boström
+ * 
+ */
 
 public class TrafficSystem {
     
@@ -31,6 +38,12 @@ public class TrafficSystem {
     	setParameters();
     }
     
+    /**
+     * {@code inputLoop} loops the input until the int is neither a letter nor an integer. 
+     *
+     * @return the new parameter
+     */
+    
     public int inputLoop(int i, String s, Scanner sc) {
     	String posValue = "\nPlease enter a positive integer.\n";
    		while(i < 0){
@@ -47,7 +60,9 @@ public class TrafficSystem {
    		return i;
     }
 
-    
+    /**
+     *  {@code setParameters} sets the parameters for the traffic simulation.
+     */
    	public void setParameters() {
    		Scanner sc = new Scanner(System.in);
    		int n = -1, m = -1, t = -1, p = -1, g1 = -1, g2 = -1;
@@ -86,99 +101,7 @@ public class TrafficSystem {
    		s2 = new Light(p, g2);
    		sc.close(); 	
    		
-   		/*
-   		while(n < 0){
-
-	   			System.out.println("Percentual chance of cars arriving to the system (positive integer):  ");   
-	   			try{
-	   			n = sc.nextInt();
-	   			
-	   			} catch (InputMismatchException e){
-	 			   System.out.println(posValue);
-	 			   sc.next();
-	 	   		}
-   		} arrivalIntensity = n;
-   	
-   		while(m < 0){
-
-   			System.out.println("How long is the first lane (positive integer): ");   
-   			try{
-   			m = sc.nextInt();
-   			
-   			} catch (InputMismatchException e){
- 			   System.out.println(posValue);
- 			   sc.next();
- 	   		}
-		}r0 = new Lane(m);
    		
-		
-   		while(t < 0){
-
-   			System.out.println("How long are the double lanes (positive integer):  ");   
-   			try{
-   			t = sc.nextInt();
-   			
-   			} catch (InputMismatchException e){
- 			   System.out.println(posValue);
- 			   sc.next();
- 	   		}
-		}  
-   		r1 = new Lane(t);
-   		r2 = new Lane(t);
-	   
-   		while(p< 0){
-
-   			System.out.println("How long is the period (positive integer):  ");   
-   			try{
-   			p = sc.nextInt();
-   			
-   			} catch (InputMismatchException e){
- 			   System.out.println(posValue);
- 			   sc.next();
- 	   		}
-		}  	
-   		
-   		while(g1< 0){
-
-   			System.out.println("How long is the straight greentime (positive integer):  ");   
-   			try{
-   			g1 = sc.nextInt();
-   			
-   			} catch (InputMismatchException e){
- 			   System.out.println(posValue);
- 			   sc.next();
- 	   		}
-		}  
-   		
-   		while(g2 < 0){
-
-   			System.out.println("How is the turn greentime (positive integer):  ");   
-   			try{
-   			g2= sc.nextInt();
-   			
-   			} catch (InputMismatchException e){
- 			   System.out.println(posValue);
- 			   sc.next();
- 	   		}
-		}  
-   		
-   		if(p<g1) {
-   			System.out.println("Please enter values where period > straight greentime:\nEnter a length of period: ");
-   			p = sc.nextInt();
-   			System.out.println("Enter the length of the straight greentime: ");
-   			g1 = sc.nextInt();
-           		
-   		}
-   		if (p<g2) {
-   			System.out.println("Please enter values where period > turn greentime.\nEnter a value for period: ");
-   			p = sc.nextInt();
-   			System.out.println("Enter the length of the turn greentime: ");
-   			g2 = sc.nextInt();
-   		} 
-   		s1 = new Light(p, g1);
-   		s2 = new Light(p, g2);
-   		sc.close(); 	
-*/
    	}
 
 
@@ -211,7 +134,9 @@ public class TrafficSystem {
     public void setFrequency() {
         carFrequency = (float)numberOfPassedCars/(float)time;
     }
-    
+    /**
+     * {@code printStatistics} prints the statistics from the traffic simulation. 
+     */
     public void printStatistics() {
         setAverageTime();
         setFrequency();
@@ -222,6 +147,11 @@ public class TrafficSystem {
         System.out.println("Estimated frequency of cars leaving the system was " + carFrequency + " cars/second.");
 	
     }
+    
+    /**
+     * {@code step} steps the simulation forward.
+     * @throws simulering.TrafficSystem.OverflowException - if there are too many cars 
+     */
     
     public void step() throws OverflowException {
         s1.step();
@@ -265,6 +195,9 @@ public class TrafficSystem {
 
     }
     
+    /**
+     * {@code print} prints the graph resembling the cars, the lanes and the lights. 
+     */
 
     public void print() {
         System.out.println("\n");
