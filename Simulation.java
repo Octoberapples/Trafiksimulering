@@ -1,11 +1,20 @@
-package trafiksimulering;
 
-import trafiksimulering.TrafficSystem.OverflowException;
+package simulering;
 
-public class Simulation {
+import simulering.TrafficSystem.OverflowException;
 
-    public static void main(String [] args) throws InterruptedException {
-        TrafficSystem newTS = new TrafficSystem();
+/**
+ * The Class {@code Simulering} controls the overall traffic simulation; the steps and the printing of the roads and the cars. 
+ * 
+ * @author Linnea Dahl and Axel Boström
+ */
+public class Simulering {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args)  throws InterruptedException {
+                TrafficSystem newTS = new TrafficSystem();
         for(int i = 0; i < 50; i++){
             try{
             newTS.step();   
@@ -22,4 +31,5 @@ public class Simulation {
         }
         newTS.printStatistics();
     }
+    
 }
