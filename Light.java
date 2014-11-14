@@ -1,7 +1,15 @@
-package trafiksimulering;
 
+package simulering;
+
+/**
+ * 
+ * The class {@code Light} controlls the traffic lights in the traffic simulation.
+ * 
+ * @author Linnea Dahl and Axel Boström
+ * 
+ */
 public class Light {
-    private final int period;
+       private final int period;
     private int time;  // Intern klocka: 0, 1, ... period-1, 0, 1 ...
     private final int green; // Signalen gr�n n�r time<green 
     
