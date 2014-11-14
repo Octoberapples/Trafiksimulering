@@ -3,23 +3,24 @@ package simulering;
 
 /**
  *
- * The class {@code Lane} is the class where the lane is controlled. 
+ * The class {@code Lane} contains and manages the lane. 
  * 
- * @author Linnea Dahl and Axel Boström 
+ * @author Linnea Dahl and Axel Bostrom 
  */
 public class Lane {
-     //field
+  
     private final Car[] theLane;
 
 
-    //konstruktor
+
     public Lane(int n) {
         theLane = new Car[n];
-        
-	// Konstruerar ett Lane-objekt med plats fï¿½r n fordon
-    }
 
-    //metoder
+    }
+/**
+ * {@code step()} steps each car in a lane one step forward, i.e. increments the value of each element with 1.
+ */
+
     public void step() {
         for(int i = 0; i <= (theLane.length-2); i++) {
             if (theLane[i] == null){
@@ -28,24 +29,19 @@ public class Lane {
             }
         }
     }
-    
-    // Stega fram alla fordon (utom det pï¿½ plats 0) ett steg 
-    // (om det gï¿½r). (Fordonet pï¿½ plats 0 tas bort utifrï¿½n 
-    // mm h a metoden nedan.)
-    
+
     /**
+     * {@code getFirst()} removes and returns the first car in a lane.
      * @return first_car
      */
     public Car getFirst() {
         Car first_car = theLane[0];
         theLane[0] = null;
         return first_car;
-	// Returnera och tag bort bilen som står först 
     }
     
     public Car firstCar() {
         return theLane[0];
-	// Returnera bilen som stï¿½r fï¿½rst utan att ta bort den
     }
 
 
@@ -53,10 +49,10 @@ public class Lane {
         int len = (theLane.length-1); 
         return theLane[len] == null;
     }
-	// Returnera true om sista platsen ledig, annars false
+	
     
     /**
-     * 
+     *
      * @param c - a car from the class Car 
      */
 
@@ -67,8 +63,7 @@ public class Lane {
         }   
     }
     
-	// Stï¿½ll en bil pï¿½ sista platsen pï¿½ vï¿½gen
-	// (om det gï¿½r).
+
     
     public String toString() {
         String lane = "";

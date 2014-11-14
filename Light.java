@@ -3,15 +3,15 @@ package simulering;
 
 /**
  * 
- * The class {@code Light} controlls the traffic lights in the traffic simulation.
+ * The class {@code Light} contains and manages the traffic lights and their attributes in the traffic system.
  * 
- * @author Linnea Dahl and Axel Boström
+ * @author Linnea Dahl and Axel Bostrom
  * 
  */
 public class Light {
        private final int period;
-    private int time;  // Intern klocka: 0, 1, ... period-1, 0, 1 ...
-    private final int green; // Signalen gr�n n�r time<green 
+    private int time; 
+    private final int green;
     
     public Light(int period, int green) {
         this.period = period - 1;
@@ -22,12 +22,12 @@ public class Light {
  public void step() { 
         if(time<period) time++;
         else time = 0;
-        // Stegar fram klocka ett steg
+        
     }
 
     public boolean isGreen()   {
         return time<=green;
-        // Returnerar true om time<green, annars false
+   
     }
 
     public String toString() 

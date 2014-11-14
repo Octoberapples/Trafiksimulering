@@ -4,11 +4,11 @@ package simulering;
 import simulering.TrafficSystem.OverflowException;
 
 /**
- * The Class {@code Simulering} controls the overall traffic simulation; the steps and the printing of the roads and the cars. 
+ * The Class {@code Simulation} controls the overall traffic simulation; the steps and the printing of the roads and the cars. 
  * 
- * @author Linnea Dahl and Axel Boström
+ * @author Linnea Dahl and Axel Bostrom
  */
-public class Simulering {
+public class Simulation {
 
     /**
      * @param args the command line arguments
@@ -25,9 +25,6 @@ public class Simulering {
             } finally {
             Thread.sleep(500); 
             }
-	// Skapar ett TrafficSystem
-	// Utf�r stegningen, anropar utskriftsmetoder
-
         }
         newTS.printStatistics();
     }

@@ -3,15 +3,14 @@ package simulering;
 
 /**
  *
- * The class {@code Car} controlls the different cars in the traffic simulation.
+ * The class {@code Car} contains the attributes of the cars in the traffic system.
  * 
- * @author Linnea Dahl and Axel Boström
+ * @author Linnea Dahl and Axel Bostrom
  */
 public class Car {
-      private final int bornTime;
-    private final int dest; // 0 f�r rakt fram, 1 f�r v�nstersv�ng
-
-    // konstruktor och get-metoder
+    private final int bornTime;
+    private final int dest; 
+    
     public Car(int bornTime, int dest) {
         this.bornTime = bornTime;
         this.dest = dest;
@@ -24,6 +23,11 @@ public class Car {
     public int getDest () {
         return dest;
     }
-  
+
+    
 }
+
+
+
+
 

@@ -4,9 +4,9 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 /**
  * 
- * The class {@code TrafficSystem} gets the parameters for the traffic simulation, controls the steps and prints the statistics.
+ * The class {@code TrafficSystem} manages the input, increments the traffic system and prints the statistics.
  * 
- * @author Linnea Dahl and Axel Boström
+ * @author Linnea Dahl and Axel Bostrom
  * 
  */
 
@@ -25,7 +25,7 @@ public class TrafficSystem {
     }
   
 
-    private Lane  r0, r1, r2;
+    private Lane r0, r1, r2;
     private Light s1, s2;
 
 
@@ -39,7 +39,7 @@ public class TrafficSystem {
     }
     
     /**
-     * {@code inputLoop} loops the input until the int is neither a letter nor an integer. 
+     * {@code inputLoop} loops until the input is a positive integer. 
      *
      * @return the new parameter
      */
@@ -150,7 +150,7 @@ public class TrafficSystem {
     
     /**
      * {@code step} steps the simulation forward.
-     * @throws simulering.TrafficSystem.OverflowException - if there are too many cars 
+     * @throws simulering.TrafficSystem.OverflowException - if no more cars can be added.
      */
     
     public void step() throws OverflowException {
@@ -196,7 +196,7 @@ public class TrafficSystem {
     }
     
     /**
-     * {@code print} prints the graph resembling the cars, the lanes and the lights. 
+     * {@code print} prints the graphic for the traffic system.
      */
 
     public void print() {
@@ -209,5 +209,4 @@ public class TrafficSystem {
 
     }
     
-
 }
