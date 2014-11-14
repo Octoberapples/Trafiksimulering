@@ -1,8 +1,14 @@
-package trafiksimulering;
 
+package simulering;
+
+/**
+ *
+ * The class {@code Lane} is the class where the lane is controlled. 
+ * 
+ * @author Linnea Dahl and Axel Boström 
+ */
 public class Lane {
-
-    //field
+     //field
     private final Car[] theLane;
 
 
@@ -10,7 +16,7 @@ public class Lane {
     public Lane(int n) {
         theLane = new Car[n];
         
-	// Konstruerar ett Lane-objekt med plats f�r n fordon
+	// Konstruerar ett Lane-objekt med plats fï¿½r n fordon
     }
 
     //metoder
@@ -23,8 +29,8 @@ public class Lane {
         }
     }
     
-    // Stega fram alla fordon (utom det p� plats 0) ett steg 
-    // (om det g�r). (Fordonet p� plats 0 tas bort utifr�n 
+    // Stega fram alla fordon (utom det pï¿½ plats 0) ett steg 
+    // (om det gï¿½r). (Fordonet pï¿½ plats 0 tas bort utifrï¿½n 
     // mm h a metoden nedan.)
     
     /**
@@ -34,12 +40,12 @@ public class Lane {
         Car first_car = theLane[0];
         theLane[0] = null;
         return first_car;
-	// Returnera och tag bort bilen som st�r f�rst 
+	// Returnera och tag bort bilen som står först 
     }
     
     public Car firstCar() {
         return theLane[0];
-	// Returnera bilen som st�r f�rst utan att ta bort den
+	// Returnera bilen som stï¿½r fï¿½rst utan att ta bort den
     }
 
 
@@ -49,6 +55,10 @@ public class Lane {
     }
 	// Returnera true om sista platsen ledig, annars false
     
+    /**
+     * 
+     * @param c - a car from the class Car 
+     */
 
     public void putLast(Car c){
         int len = ((theLane.length)-1);
@@ -57,8 +67,8 @@ public class Lane {
         }   
     }
     
-	// St�ll en bil p� sista platsen p� v�gen
-	// (om det g�r).
+	// Stï¿½ll en bil pï¿½ sista platsen pï¿½ vï¿½gen
+	// (om det gï¿½r).
     
     public String toString() {
         String lane = "";
