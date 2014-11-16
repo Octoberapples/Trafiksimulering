@@ -2,7 +2,7 @@
 package simulering;
 
 /**
- *
+
  * The class {@code Lane} contains and manages the lane. 
  * 
  * @author Linnea Dahl and Axel Bostrom 
