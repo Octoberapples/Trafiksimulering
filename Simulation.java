@@ -8,7 +8,7 @@ import simulering.TrafficSystem.OverflowException;
  * 
  * @author Linnea Dahl and Axel Bostrom
  */
-public class Simulation {
+public class Simulering {
 
     /**
      * @param args the command line arguments
