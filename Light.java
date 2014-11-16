@@ -2,7 +2,6 @@
 package simulering;
 
 /**
- * 
  * The class {@code Light} contains and manages the traffic lights and their attributes in the traffic system.
  * 
  * @author Linnea Dahl and Axel Bostrom
