@@ -6,6 +6,7 @@ import java.util.Scanner;
  * 
  * The class {@code TrafficSystem} manages the input, increments the traffic system and prints the statistics.
  * 
+ * 
  * @author Linnea Dahl and Axel Bostrom
  * 
  */
