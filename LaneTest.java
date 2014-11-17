@@ -22,40 +22,25 @@ public class LaneTest {
     /**
      * Test of step method, of class Lane.
      */
+    
     @Test
     public void testStep() {
-        System.out.println("step");
-        Lane instance = null;
+        Car instanceCar = new Car(0,0);
+        Lane instance = new Lane(3);
+        instance.putLast(instanceCar);  
+        assertEquals(instance.firstCar(), null);
         instance.step();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(instance.firstCar(), null);
+        instance.step();
+        assertEquals(instance.firstCar(), instanceCar);
+       
     }
 
-    /**
-     * Test of getFirst method, of class Lane.
-     */
-    @Test
-    public void testGetFirst() {
-        System.out.println("getFirst");
-        Lane instance = null;
-        Car expResult = null;
-        Car result = instance.getFirst();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of putLast method, of class Lane.
-     */
-    @Test
-    public void testPutLast() {
-        System.out.println("putLast");
-        Car c = null;
-        Lane instance = null;
-        instance.putLast(c);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
+ 
 }
+/*
+Integration och junit är olika saker. Integration är när man testar hur 
+metoder fungerar ihop, medans junit testar individuella metoder för sig.
+
+
+*/
