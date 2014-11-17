@@ -23,11 +23,13 @@ public class LightTest {
      */
     @Test
     public void testStep() {
-        System.out.println("step");
-        Light instance = null;
-        instance.step();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Light instance1 = new Light(1,1);
+        Light instance2 = new Light(2,1);
+        instance1.step();
+        instance2.step();
+        assertEquals(0, instance1.getTime());
+        assertEquals(1, instance2.getTime()); 
+        
     }
 
     /**
@@ -35,12 +37,10 @@ public class LightTest {
      */
     @Test
     public void testIsGreen() {
-        System.out.println("isGreen");
-        Light instance = null;
-        boolean expResult = false;
+        Light instance = new Light(5,1);
+        boolean expResult = true;
         boolean result = instance.isGreen();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
     }
 }
